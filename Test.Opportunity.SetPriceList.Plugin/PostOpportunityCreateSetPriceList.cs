@@ -130,8 +130,6 @@ namespace Test.Plugins
                 }
                 
 
-                localContext.Trace("Information: Attributes are present in either Context");
-
                 #endregion PluginCode
             }
             catch (Exception exception) //Catch and throw all exception as InvalidPluginExecutionException
@@ -272,8 +270,8 @@ namespace Test.Plugins
             QEpricelevel.AddOrder(PriceLevel.Fields.Name, OrderType.Ascending);
 
             // Define filter QEpricelevel.Criteria
-            QEpricelevel.Criteria.AddCondition("begindate", ConditionOperator.On, startDate);
-            QEpricelevel.Criteria.AddCondition("enddate", ConditionOperator.On, endDate);
+            QEpricelevel.Criteria.AddCondition(PriceLevel.Fields.BeginDate, ConditionOperator.On, startDate);
+            QEpricelevel.Criteria.AddCondition(PriceLevel.Fields.EndDate, ConditionOperator.On, endDate);
 
             EntityCollection pricelevelCollection = localContext.OrganizationService.RetrieveMultiple(QEpricelevel);
             if (pricelevelCollection.Entities.Count > 0)
